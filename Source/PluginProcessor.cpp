@@ -139,10 +139,8 @@ void MidiDemoAudioProcessor::processMidi (juce::MidiBuffer& buffer)
         if (buffer_idx >= midi_buffer_size - 1)
             break; // no overflow
 
-        juce::MidiMessage midi_message = metadata.getMessage();
-        midi_message.setNoteNumber(midi_message.getNoteNumber() + pitch_offset);
-        midi_message.setVelocity(pressure / 127.0);
-        midi_buffer[buffer_idx++] = midi_message;
+        // TODO put edited midi messages in buffer
+        // END TODO
     }
 
     buffer.clear();
@@ -155,15 +153,8 @@ void MidiDemoAudioProcessor::processMidi (juce::MidiBuffer& buffer)
 
     if (!sent_sustain)
     {
-        juce::MidiMessage sustain_event = 
-            juce::MidiMessage::controllerEvent(
-                1,
-                64,
-                (juce::uint8) sustain ? 127 : 0
-            );
-        sustain_event.setTimeStamp(getCurrentTime());
-        buffer.addEvent(sustain_event, 0);
-        sent_sustain = true;
+        // TODO send the sustain message if not already sent
+        // END TODO
     }
 }
 
